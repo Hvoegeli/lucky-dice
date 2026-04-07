@@ -1,0 +1,160 @@
+/* ── Positioning ─────────────────────────────────────── */
+
+.cowboy-wrapper {
+  position: fixed;
+  bottom: 0;
+  right: -18px;
+  width: 155px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.cowboy-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* ── Neon classes ────────────────────────────────────── */
+
+/* Main stroke */
+.ns {
+  stroke: #FF8C00;
+  fill: none;
+  filter: drop-shadow(0 0 3px #FF8C00) drop-shadow(0 0 8px rgba(255,140,0,0.5));
+}
+
+/* Filled dot (pupils) */
+.ns-fill {
+  fill: #FF8C00;
+  stroke: none;
+  filter: drop-shadow(0 0 3px #FF8C00);
+}
+
+/* Dim — plaid, subtle details */
+.ns-dim {
+  stroke: #FF8C00;
+  fill: none;
+  opacity: 0.45;
+}
+
+/* Plaid crosshatch */
+.ns-plaid {
+  stroke: #FF8C00;
+  fill: none;
+  opacity: 0.35;
+}
+
+/* Bright — suspenders, buckles, spur */
+.ns-bright {
+  stroke: #FFD166;
+  fill: none;
+  filter: drop-shadow(0 0 4px #FFD166);
+}
+
+/* ── Ember ───────────────────────────────────────────── */
+
+.ember {
+  fill: #FF6B1A;
+  stroke: none;
+  filter: drop-shadow(0 0 3px #FF8C00);
+}
+
+.ember.ember-glow {
+  animation: emberPulse 0.4s ease-in-out 4;
+}
+
+@keyframes emberPulse {
+  0%, 100% { fill: #FF6B1A; filter: drop-shadow(0 0 3px #FF8C00); }
+  50%       { fill: #FFE96B; filter: drop-shadow(0 0 10px #FFE96B) drop-shadow(0 0 20px #FF8C00); }
+}
+
+/* ── Waving arm (idle) ───────────────────────────────── */
+
+.wave-arm {
+  transform-box: view-box;
+  transform-origin: 26px 158px;
+  animation: armWave 3s ease-in-out infinite;
+}
+
+@keyframes armWave {
+  0%, 100% { transform: rotate(0deg); }
+  35%       { transform: rotate(-20deg); }
+  65%       { transform: rotate(-8deg); }
+}
+
+/* ── Hat-waving arm ──────────────────────────────────── */
+
+.hat-wave-arm {
+  transform-box: view-box;
+  transform-origin: 26px 158px;
+  animation: hatWave 0.45s ease-in-out infinite;
+}
+
+@keyframes hatWave {
+  0%   { transform: rotate(-10deg); }
+  50%  { transform: rotate(-38deg); }
+  100% { transform: rotate(-10deg); }
+}
+
+/* ── Head hat hidden while being waved ───────────────── */
+
+.hat-hidden {
+  opacity: 0;
+}
+
+/* ── Overall figure glow ─────────────────────────────── */
+
+.cowboy-svg {
+  filter: drop-shadow(0 0 5px rgba(255,140,0,0.3));
+  transition: filter 0.3s ease;
+}
+
+.cowboy-svg.taking-drag {
+  filter: drop-shadow(0 0 12px rgba(255,140,0,0.65));
+}
+
+/* ── Smoke — rises from cigar, forms cloud above hat ─── */
+
+.smoke {
+  fill: rgba(210, 205, 200, 0.75);
+  stroke: none;
+}
+
+/* Five puffs, staggered — each travels upward ~130 SVG units to above hat */
+.smoke-1 { animation: puff1 3.5s ease-in-out forwards; }
+.smoke-2 { animation: puff2 3.5s ease-in-out 0.3s  forwards; opacity: 0; }
+.smoke-3 { animation: puff3 3.5s ease-in-out 0.6s  forwards; opacity: 0; }
+.smoke-4 { animation: puff4 3.5s ease-in-out 0.9s  forwards; opacity: 0; }
+.smoke-5 { animation: puff5 3.5s ease-in-out 1.2s  forwards; opacity: 0; }
+
+/* Puffs fan out as they climb to create a cloud silhouette above the hat */
+@keyframes puff1 {
+  0%   { opacity: 0.8;  transform: translate(0px,    0px)   scale(1);   }
+  55%  { opacity: 0.65; transform: translate(18px, -148px)  scale(3.2); }
+  100% { opacity: 0.15; transform: translate(20px, -162px)  scale(3.8); }
+}
+@keyframes puff2 {
+  0%   { opacity: 0; }
+  6%   { opacity: 0.75; transform: translate(0px,    0px)   scale(1);   }
+  58%  { opacity: 0.6;  transform: translate(28px, -158px)  scale(3.5); }
+  100% { opacity: 0.12; transform: translate(30px, -172px)  scale(4.2); }
+}
+@keyframes puff3 {
+  0%   { opacity: 0; }
+  10%  { opacity: 0.7;  transform: translate(0px,    0px)   scale(1);   }
+  60%  { opacity: 0.55; transform: translate(10px, -142px)  scale(3);   }
+  100% { opacity: 0.1;  transform: translate(12px, -156px)  scale(3.6); }
+}
+@keyframes puff4 {
+  0%   { opacity: 0; }
+  14%  { opacity: 0.65; transform: translate(0px,    0px)   scale(1);   }
+  62%  { opacity: 0.5;  transform: translate(38px, -152px)  scale(4);   }
+  100% { opacity: 0.1;  transform: translate(40px, -168px)  scale(4.8); }
+}
+@keyframes puff5 {
+  0%   { opacity: 0; }
+  18%  { opacity: 0.6;  transform: translate(0px,    0px)   scale(1);   }
+  65%  { opacity: 0.45; transform: translate(22px, -165px)  scale(3.8); }
+  100% { opacity: 0.08; transform: translate(24px, -180px)  scale(4.5); }
+}

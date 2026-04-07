@@ -1,0 +1,211 @@
+/* ─── Theme tokens ─────────────────────────────────────────── */
+
+.dark {
+  --bg:               #0d0d1a;
+  --surface:          #16162a;
+  --surface-alt:      #1f1f38;
+  --border:           #2e2e52;
+  --text-primary:     #f0f0f5;
+  --text-secondary:   #9090b8;
+  --accent:           #d4a843;
+  --accent-hover:     #e8bc55;
+  --accent-text:      #0d0d1a;
+  --die-bg:           #1f1f38;
+  --die-shadow:       0 4px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  --die-shadow-rolling: 0 8px 32px rgba(212,168,67,0.35), 0 0 0 2px rgba(212,168,67,0.2);
+  --pip-color:        #d4a843;
+  --marquee-bg:       #16162a;
+  --marquee-text:     #d4a843;
+  --btn-disabled:     #2e2e52;
+}
+
+.light {
+  --bg:               #f5f3ee;
+  --surface:          #ffffff;
+  --surface-alt:      #eeeade;
+  --border:           #d8d2c4;
+  --text-primary:     #1a1a2e;
+  --text-secondary:   #7a7a9a;
+  --accent:           #5b3fa6;
+  --accent-hover:     #7252c4;
+  --accent-text:      #ffffff;
+  --die-bg:           #ffffff;
+  --die-shadow:       0 4px 16px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
+  --die-shadow-rolling: 0 8px 32px rgba(91,63,166,0.25), 0 0 0 2px rgba(91,63,166,0.2);
+  --pip-color:        #1a1a2e;
+  --marquee-bg:       #1a1a2e;
+  --marquee-text:     #f5f3ee;
+  --btn-disabled:     #d8d2c4;
+}
+
+/* ─── Base ─────────────────────────────────────────────────── */
+
+.app {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ─── Header ───────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.theme-toggle {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  width: 42px;
+  height: 42px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  background: var(--border);
+  transform: scale(1.08);
+}
+
+/* ─── Marquee ──────────────────────────────────────────────── */
+
+.marquee-wrapper {
+  background: var(--marquee-bg);
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: background 0.3s ease;
+}
+
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 22s linear infinite;
+}
+
+.marquee-text {
+  display: inline-block;
+  color: var(--marquee-text);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding-right: 0;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─── Main ─────────────────────────────────────────────────── */
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding: 48px 24px;
+}
+
+/* ─── Dice board ───────────────────────────────────────────── */
+
+.dice-board {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  min-height: 110px;
+}
+
+/* ─── Result ───────────────────────────────────────────────── */
+
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: fadeIn 0.35s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.result-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.lucky-number {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Roll button ──────────────────────────────────────────── */
+
+.roll-btn {
+  background: var(--accent);
+  color: var(--accent-text);
+  border: none;
+  border-radius: 16px;
+  padding: 16px 56px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  text-transform: uppercase;
+}
+
+.roll-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+}
+
+.roll-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.roll-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.roll-btn.rolling {
+  animation: pulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from { box-shadow: 0 4px 20px rgba(0,0,0,0.25); }
+  to   { box-shadow: 0 4px 32px var(--accent), 0 0 0 3px rgba(212,168,67,0.15); }
+}
