@@ -19,24 +19,6 @@
   --btn-disabled:     #2e2e52;
 }
 
-.light {
-  --bg:               #f5f3ee;
-  --surface:          #ffffff;
-  --surface-alt:      #eeeade;
-  --border:           #d8d2c4;
-  --text-primary:     #1a1a2e;
-  --text-secondary:   #7a7a9a;
-  --accent:           #5b3fa6;
-  --accent-hover:     #7252c4;
-  --accent-text:      #ffffff;
-  --die-bg:           #ffffff;
-  --die-shadow:       0 4px 16px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
-  --die-shadow-rolling: 0 8px 32px rgba(91,63,166,0.25), 0 0 0 2px rgba(91,63,166,0.2);
-  --pip-color:        #1a1a2e;
-  --marquee-bg:       #1a1a2e;
-  --marquee-text:     #f5f3ee;
-  --btn-disabled:     #d8d2c4;
-}
 
 /* ─── Base ─────────────────────────────────────────────────── */
 
@@ -66,24 +48,6 @@
   color: var(--text-primary);
 }
 
-.theme-toggle {
-  background: var(--surface-alt);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  width: 42px;
-  height: 42px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.theme-toggle:hover {
-  background: var(--border);
-  transform: scale(1.08);
-}
 
 /* ─── Marquee ──────────────────────────────────────────────── */
 

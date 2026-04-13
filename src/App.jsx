@@ -1,18 +1,19 @@
 import { useState, useCallback } from 'react'
 import Die from './components/Die'
 import Cowboy from './components/Cowboy'
+import CancanGirl from './components/CancanGirl'
 import './App.css'
 
 const DICE_COUNT = 5
 const ROLL_DURATION = 1000
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(true)
   const [values, setValues] = useState(Array(DICE_COUNT).fill(0))
   const [isRolling, setIsRolling] = useState(false)
   const [hasRolled, setHasRolled] = useState(false)
   const [smokingTrigger, setSmokingTrigger] = useState(0)
   const [hatWaveTrigger, setHatWaveTrigger] = useState(0)
+  const [cancanTrigger, setCancanTrigger] = useState(0)
 
   const roll = useCallback(() => {
     if (isRolling) return
@@ -33,24 +34,19 @@ export default function App() {
       if (finalValues.includes(1) && !hasAdjDoubleOne) setSmokingTrigger(t => t + 1)
       // Hat wave fires on any adjacent double (including 11 — which suppresses smoke above)
       if (hasAdjDouble) setHatWaveTrigger(t => t + 1)
+      // Cancan kick fires when any die shows 7
+      if (finalValues.includes(7)) setCancanTrigger(t => t + 1)
     }, ROLL_DURATION)
   }, [isRolling])
 
   const luckyNumber = hasRolled ? values.join('') : null
 
   return (
-    <div className={`app ${darkMode ? 'dark' : 'light'}`}>
+    <div className="app dark">
 
       {/* Header */}
       <header className="header">
         <h1 className="title">Lucky Dice</h1>
-        <button
-          className="theme-toggle"
-          onClick={() => setDarkMode(d => !d)}
-          aria-label="Toggle theme"
-        >
-          {darkMode ? '☀️' : '🌙'}
-        </button>
       </header>
 
       {/* Scrolling marquee */}
@@ -101,6 +97,7 @@ export default function App() {
       </main>
 
       <Cowboy smoking={smokingTrigger} hatWaving={hatWaveTrigger} />
+      <CancanGirl kicking={cancanTrigger} />
     </div>
   )
 }

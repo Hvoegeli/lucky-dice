@@ -1,0 +1,35 @@
+/* ── Positioning ─────────────────────────────────────── */
+
+.cancan-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: -18px;
+  width: 155px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.cancan-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0 5px rgba(255,140,0,0.3));
+}
+
+/* ── Cancan kick leg ─────────────────────────────────── */
+
+.kick-leg {
+  transform-box: view-box;
+  transform-origin: 73px 281px;   /* right hip joint */
+}
+
+.kick-leg.kicking {
+  animation: cancanKick 0.55s ease-in-out 4;
+}
+
+@keyframes cancanKick {
+  0%   { transform: rotate(0deg); }
+  38%  { transform: rotate(-130deg); }
+  58%  { transform: rotate(-126deg); }
+  100% { transform: rotate(0deg); }
+}
